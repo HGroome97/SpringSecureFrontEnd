@@ -1,4 +1,4 @@
-package com.javacodegeeks;
+package com.qa;
 
 import javax.sql.DataSource;
 
@@ -30,7 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
             .and()
             	.logout()
-                .permitAll();
+                .permitAll()
+            .and()
+            	.exceptionHandling()
+            	.accessDeniedPage("/accessDenied");
     }
     
     @Autowired
