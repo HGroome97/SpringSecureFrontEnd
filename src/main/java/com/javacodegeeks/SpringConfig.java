@@ -13,5 +13,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/mydetails").setViewName("mydetails");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/admin").setViewName("admin");
     }
 }
