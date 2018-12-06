@@ -1,7 +1,11 @@
-package com.javacodegeeks;
+package com.qa;
 
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -42,4 +46,17 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 //
 //        return bean;
 //    }
+    
+    @Bean
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
+        return new EmbeddedServletContainerCustomizer() {
+            @Override
+            public void customize(ConfigurableEmbeddedServletContainer container) {
+
+                ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/error404.html");
+                container.addErrorPages(error404Page);
+
+            }
+        };
+    }
 }
