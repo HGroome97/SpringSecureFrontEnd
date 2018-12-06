@@ -3,8 +3,11 @@ package com.javacodegeeks;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 public class SpringConfig extends WebMvcConfigurerAdapter {
@@ -16,6 +19,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/mydetails").setViewName("mydetails");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/admin").setViewName("admin");
+        registry.addViewController("/accessDenied").setViewName("accessDenied");;
     }
     
     @Bean(name = "dataSource")
@@ -27,4 +31,15 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         driverManagerDataSource.setPassword("password");
         return driverManagerDataSource;
     }
+    
+//    @Bean
+//    public ViewResolver viewResolver() {
+//        final InternalResourceViewResolver bean = new InternalResourceViewResolver();
+//
+//        bean.setViewClass(JstlView.class);
+//       // bean.setPrefix("/WEB-INF/view/");
+//        bean.setSuffix(".jsp");
+//
+//        return bean;
+//    }
 }
